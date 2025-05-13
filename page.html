@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tim Jaringan Komputer</title>
+    <title>Jaringan Komputer</title>
     <meta name="description" content="Website tim Jaringan Komputer dengan profil anggota interaktif">
     <link rel="stylesheet" href="design.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -12,20 +12,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="dark-theme">
-    <!-- Background elements -->
     <div class="background-container">
         <div class="stars"></div>
         <div class="twinkling"></div>
         <div class="clouds"></div>
         <div class="particle-container" id="particles"></div>
         <div class="network-grid" id="network-grid"></div>
-        <!-- Data stream element is still present but will be hidden via CSS -->
         <div class="data-stream" id="data-stream"></div>
         <div class="circuit-board" id="circuit-board"></div>
         <canvas id="network-canvas"></canvas>
     </div>
 
-    <!-- Loading screen with improved animation -->
     <div class="loading-screen" id="loading-screen">
         <div class="loader">
             <div class="loader-circuit">
@@ -38,11 +35,10 @@
             <div class="loader-line-mask">
                 <div class="loader-line"></div>
             </div>
-            <span class="loading-text">Establishing Connection...</span>
+            <span class="loading-text">Loading...</span>
         </div>
     </div>
 
-    <!-- Theme toggle with accessible labels -->
     <div class="theme-toggle-container">
         <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
             <span class="theme-toggle-track">
@@ -59,12 +55,9 @@
 
     <main class="main-content">
         <div class="container">
-            <!-- Hero section with network animation -->
             <section class="hero-section">
                 <h1 class="title glitch-effect" data-text="Tim Jaringan Komputer">Tugas Besar Jaringan Komputer!</h1>
                 <p class="subtitle">Tugas besar ini berkaitan dengan pembuatan web server berbasis TCP yang mampu menangani permintaan HTTP menggunakan socket programming. Server harus dapat menerima dan memproses request, mengirimkan file yang diminta, dan jika file tidak ditemukan, server akan mengirimkan response "404 Not Found". Selain itu, server harus mampu menangani beberapa permintaan secara bersamaan dengan memanfaatkan multithreading, di mana setiap permintaan dilayani dalam thread terpisah. Selain server, tugas ini juga mencakup pembuatan klien HTTP yang dapat mengirimkan request dan menampilkan response dari server.</p>
-                
-                <!-- The three boxes (network-stats section) have been removed -->
                 
                 <div class="scroll-indicator">
                     <div class="mouse">
@@ -78,7 +71,6 @@
                 </div>
             </section>
 
-            <!-- Team section with dynamic cards -->
             <section class="team-section" id="team-section">
                 <div class="section-header">
                     <h2 class="section-title">Anggota Kelompok</h2>
@@ -88,13 +80,8 @@
                         <span></span>
                     </div>
                 </div>
-
-                <!-- Cards will be dynamically generated here -->
                 <div class="cards-container">
-                    <!-- Team member cards will be inserted by JavaScript -->
                 </div>
-
-                <!-- Conclusion card with toggle -->
                 <div class="conclusion-section">
                     <div class="conclusion-card" id="conclusion-card">
                         <div class="conclusion-header" id="conclusion-header">
@@ -122,19 +109,17 @@
         </div>
     </main>
 
-    <!-- Simple footer -->
     <footer class="site-footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-network-pattern"></div>
                 <div class="footer-text">
-                    <p>&copy; Dibuat Oleh Kelompok 3 • Computer Networks</p>
+                    <p>&copy; Dibuat Oleh Kelompok 3 • Jarkom</p>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Modal for team member details -->
     <div class="modal" id="detailModal">
         <div class="modal-backdrop"></div>
         <div class="modal-content">
@@ -215,12 +200,10 @@
         </div>
     </div>
 
-    <!-- Back to top button -->
     <button id="back-to-top" class="back-to-top" aria-label="Back to top">
         <i class="fas fa-chevron-up"></i>
     </button>
 
-    <!-- Toast notification container -->
     <div class="toast-container">
         <div class="toast" id="toast">
             <div class="toast-icon">
@@ -235,7 +218,6 @@
         </div>
     </div>
 
-    <!-- Script tag -->
     <script src="control.js"></script>
 </body>
 </html>

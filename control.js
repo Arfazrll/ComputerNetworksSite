@@ -1,5 +1,3 @@
-// Updated control.js to remove binary numbers and related functions
-
 const teamMembers = [
     {
         name: "Arief",
@@ -102,9 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
     loadThemePreference();
     initNetworkCanvas();
     
-    // Modified: Removed call to initDataStream() function
-    // The data stream element is still in the HTML but hidden via CSS
-    
     setTimeout(() => {
         showToast('Jika anda telah berhasil sampai kesini bearti server berhasil dijalankan!');
     }, 2000);
@@ -165,8 +160,6 @@ function initEventListeners() {
     backToTopBtn.addEventListener('click', scrollToTop);
     themeToggle.addEventListener('click', toggleTheme);
     toastCloseBtn.addEventListener('click', hideToast);
-    
-    // Conclusion card toggle
     conclusionHeader.addEventListener('click', toggleConclusion);
     
     document.addEventListener('keydown', (e) => {
@@ -199,7 +192,6 @@ function initCardEffects() {
             
             card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
             
-            // Add glow effect at cursor position
             const glowX = (x / rect.width) * 100;
             const glowY = (y / rect.height) * 100;
             card.style.background = `radial-gradient(circle at ${glowX}% ${glowY}%, rgba(0, 212, 255, 0.1), transparent)`;
@@ -214,7 +206,6 @@ function initCardEffects() {
     });
 }
 
-// New network canvas visualization
 function initNetworkCanvas() {
     const canvas = document.getElementById('network-canvas');
     const ctx = canvas.getContext('2d');
@@ -225,7 +216,6 @@ function initNetworkCanvas() {
     const nodes = [];
     const connections = [];
     
-    // Create nodes
     for (let i = 0; i < 20; i++) {
         nodes.push({
             x: Math.random() * canvas.width,
@@ -236,7 +226,6 @@ function initNetworkCanvas() {
         });
     }
     
-    // Create connections
     for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
             if (Math.random() < 0.1) {
@@ -248,7 +237,6 @@ function initNetworkCanvas() {
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
-        // Update nodes
         nodes.forEach(node => {
             node.x += node.vx;
             node.y += node.vy;
@@ -257,7 +245,6 @@ function initNetworkCanvas() {
             if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
         });
         
-        // Draw connections
         ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--accent-primary');
         ctx.lineWidth = 0.5;
         ctx.globalAlpha = 0.3;
@@ -268,8 +255,7 @@ function initNetworkCanvas() {
             ctx.lineTo(nodes[j].x, nodes[j].y);
             ctx.stroke();
         });
-        
-        // Draw nodes
+
         ctx.globalAlpha = 1;
         nodes.forEach(node => {
             ctx.beginPath();
@@ -283,14 +269,11 @@ function initNetworkCanvas() {
     
     animate();
     
-    // Resize canvas on window resize
     window.addEventListener('resize', () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     });
 }
-
-// REMOVED: initDataStream function is completely removed to eliminate binary numbers
 
 function openModal(e, memberId) {
     const member = teamMembers[memberId];
@@ -430,8 +413,7 @@ function createNetworkGrid() {
         
         dot.style.left = `${posX}%`;
         dot.style.top = `${posY}%`;
-        
-        // Add pulsing animation to some dots
+
         if (Math.random() > 0.7) {
             dot.style.animation = `pulse-dot 3s ease-in-out ${Math.random() * 3}s infinite`;
         }
@@ -439,7 +421,6 @@ function createNetworkGrid() {
         container.appendChild(dot);
     }
     
-    // Create more dynamic network lines
     for (let i = 0; i < gridSize; i++) {
         if (Math.random() > 0.7) {
             const hLine = document.createElement('div');
