@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="dark-theme">
+    <!-- Background elements -->
     <div class="background-container">
         <div class="stars"></div>
         <div class="twinkling"></div>
@@ -23,6 +24,7 @@
         <canvas id="network-canvas"></canvas>
     </div>
 
+    <!-- Loading screen with improved animation -->
     <div class="loading-screen" id="loading-screen">
         <div class="loader">
             <div class="loader-circuit">
@@ -39,6 +41,7 @@
         </div>
     </div>
 
+    <!-- Theme toggle with accessible labels -->
     <div class="theme-toggle-container">
         <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
             <span class="theme-toggle-track">
@@ -55,6 +58,7 @@
 
     <main class="main-content">
         <div class="container">
+            <!-- Hero section with network animation -->
             <section class="hero-section">
                 <div class="network-animation-3d">
                     <div class="network-globe">
@@ -100,6 +104,7 @@
                 </div>
             </section>
 
+            <!-- Team section with dynamic cards -->
             <section class="team-section" id="team-section">
                 <div class="section-header">
                     <h2 class="section-title">Anggota Kelompok</h2>
@@ -110,9 +115,12 @@
                     </div>
                 </div>
 
+                <!-- Cards will be dynamically generated here -->
                 <div class="cards-container">
+                    <!-- Team member cards will be inserted by JavaScript -->
                 </div>
 
+                <!-- Conclusion card with toggle -->
                 <div class="conclusion-section">
                     <div class="conclusion-card" id="conclusion-card">
                         <div class="conclusion-header" id="conclusion-header">
@@ -140,6 +148,7 @@
         </div>
     </main>
 
+    <!-- Simple footer -->
     <footer class="site-footer">
         <div class="container">
             <div class="footer-content">
@@ -151,6 +160,7 @@
         </div>
     </footer>
 
+    <!-- Modal for team member details -->
     <div class="modal" id="detailModal">
         <div class="modal-backdrop"></div>
         <div class="modal-content">
@@ -160,7 +170,7 @@
             <div class="modal-body">
                 <div class="modal-left">
                     <div class="modal-image-container">
-                        <img id="modalImage" src="/api/placeholder/400/400" alt="Team Member" loading="lazy">
+                        <img id="modalImage" src="/api/placeholder/400/400" alt="Team Member" loading="lazy" onerror="this.src='/api/placeholder/400/400'; this.onerror=null;">
                         <div class="image-decoration">
                             <div class="decoration-dot dot-1"></div>
                             <div class="decoration-dot dot-2"></div>
@@ -212,16 +222,16 @@
                     <div class="info-section">
                         <h3>Social Media</h3>
                         <div class="social-icons">
-                            <a href="#" class="social-icon" id="socialInstagram" aria-label="Instagram">
+                            <a href="#" class="social-icon" id="socialInstagram" aria-label="Instagram" target="_blank" rel="noopener">
                                 <i class="fab fa-instagram"></i>
                             </a>
-                            <a href="#" class="social-icon" id="socialLinkedin" aria-label="LinkedIn">
+                            <a href="#" class="social-icon" id="socialLinkedin" aria-label="LinkedIn" target="_blank" rel="noopener">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
-                            <a href="#" class="social-icon" id="socialGithub" aria-label="GitHub">
+                            <a href="#" class="social-icon" id="socialGithub" aria-label="GitHub" target="_blank" rel="noopener">
                                 <i class="fab fa-github"></i>
                             </a>
-                            <a href="#" class="social-icon" id="socialTwitter" aria-label="Twitter">
+                            <a href="#" class="social-icon" id="socialTwitter" aria-label="Twitter" target="_blank" rel="noopener">
                                 <i class="fab fa-twitter"></i>
                             </a>
                         </div>
@@ -231,10 +241,12 @@
         </div>
     </div>
 
+    <!-- Back to top button -->
     <button id="back-to-top" class="back-to-top" aria-label="Back to top">
         <i class="fas fa-chevron-up"></i>
     </button>
 
+    <!-- Toast notification container -->
     <div class="toast-container">
         <div class="toast" id="toast">
             <div class="toast-icon">
@@ -249,6 +261,7 @@
         </div>
     </div>
 
+    <!-- Script tag -->
     <script src="control.js"></script>
 </body>
 </html>
