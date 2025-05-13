@@ -1,3 +1,5 @@
+// Updated control.js to remove binary numbers and related functions
+
 const teamMembers = [
     {
         name: "Arief",
@@ -99,7 +101,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initCardEffects();
     loadThemePreference();
     initNetworkCanvas();
-    initDataStream();
+    
+    // Modified: Removed call to initDataStream() function
+    // The data stream element is still in the HTML but hidden via CSS
     
     setTimeout(() => {
         showToast('Jika anda telah berhasil sampai kesini bearti server berhasil dijalankan!');
@@ -286,27 +290,7 @@ function initNetworkCanvas() {
     });
 }
 
-// Enhanced data stream effect
-function initDataStream() {
-    const dataStream = document.getElementById('data-stream');
-    const binaryStrings = ['01101000', '11010101', '00110010', '10101010', '11110000'];
-    
-    setInterval(() => {
-        const dataElement = document.createElement('div');
-        dataElement.className = 'data-bit';
-        dataElement.textContent = binaryStrings[Math.floor(Math.random() * binaryStrings.length)];
-        dataElement.style.left = Math.random() * 100 + '%';
-        dataElement.style.animationDuration = Math.random() * 5 + 5 + 's';
-        dataElement.style.fontSize = Math.random() * 10 + 10 + 'px';
-        dataElement.style.opacity = Math.random() * 0.5 + 0.1;
-        
-        dataStream.appendChild(dataElement);
-        
-        setTimeout(() => {
-            dataElement.remove();
-        }, 10000);
-    }, 500);
-}
+// REMOVED: initDataStream function is completely removed to eliminate binary numbers
 
 function openModal(e, memberId) {
     const member = teamMembers[memberId];

@@ -19,6 +19,7 @@
         <div class="clouds"></div>
         <div class="particle-container" id="particles"></div>
         <div class="network-grid" id="network-grid"></div>
+        <!-- Data stream element is still present but will be hidden via CSS -->
         <div class="data-stream" id="data-stream"></div>
         <div class="circuit-board" id="circuit-board"></div>
         <canvas id="network-canvas"></canvas>
@@ -75,23 +76,9 @@
                 </div>
                 <h1 class="title glitch-effect" data-text="Tim Jaringan Komputer">Tugas Besar Jaringan Komputer!</h1>
                 <p class="subtitle">Tugas besar ini berkaitan dengan pembuatan web server berbasis TCP yang mampu menangani permintaan HTTP menggunakan socket programming. Server harus dapat menerima dan memproses request, mengirimkan file yang diminta, dan jika file tidak ditemukan, server akan mengirimkan response "404 Not Found". Selain itu, server harus mampu menangani beberapa permintaan secara bersamaan dengan memanfaatkan multithreading, di mana setiap permintaan dilayani dalam thread terpisah. Selain server, tugas ini juga mencakup pembuatan klien HTTP yang dapat mengirimkan request dan menampilkan response dari server.</p>
-                <div class="network-stats">
-                    <div class="stat">
-                        <i class="fas fa-server"></i>
-                        <span class="stat-value">TCP</span>
-                        <span class="stat-label">Protocol</span>
-                    </div>
-                    <div class="stat">
-                        <i class="fas fa-network-wired"></i>
-                        <span class="stat-value">HTTP</span>
-                        <span class="stat-label">Layer</span>
-                    </div>
-                    <div class="stat">
-                        <i class="fas fa-microchip"></i>
-                        <span class="stat-value">Multi</span>
-                        <span class="stat-label">Thread</span>
-                    </div>
-                </div>
+                
+                <!-- The three boxes (network-stats section) have been removed -->
+                
                 <div class="scroll-indicator">
                     <div class="mouse">
                         <div class="wheel"></div>
