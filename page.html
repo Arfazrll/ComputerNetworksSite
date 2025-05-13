@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tim Jaringan Komputer</title>
+    <meta name="description" content="Website tim Jaringan Komputer dengan profil anggota interaktif">
+    <link rel="stylesheet" href="design.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dark-theme">
+    <div class="background-container">
+        <div class="stars"></div>
+        <div class="twinkling"></div>
+        <div class="clouds"></div>
+        <div class="particle-container" id="particles"></div>
+        <div class="network-grid" id="network-grid"></div>
+    </div>
+
+    <div class="loading-screen" id="loading-screen">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-line-mask">
+                <div class="loader-line"></div>
+            </div>
+            <span class="loading-text">Loading...</span>
+        </div>
+    </div>
+
+    <div class="theme-toggle-container">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+            <span class="theme-toggle-track">
+                <span class="theme-toggle-icon theme-toggle-icon-light">
+                    <i class="fas fa-sun"></i>
+                </span>
+                <span class="theme-toggle-icon theme-toggle-icon-dark">
+                    <i class="fas fa-moon"></i>
+                </span>
+            </span>
+        </button>
+        <span class="theme-label">Dark Mode</span>
+    </div>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="hero-section">
+                <div class="network-animation">
+                    <div class="network-node center-node"></div>
+                    <div class="network-node node-1"></div>
+                    <div class="network-node node-2"></div>
+                    <div class="network-node node-3"></div>
+                    <div class="network-line line-1"></div>
+                    <div class="network-line line-2"></div>
+                    <div class="network-line line-3"></div>
+                    <div class="network-packet packet-1"></div>
+                    <div class="network-packet packet-2"></div>
+                    <div class="network-packet packet-3"></div>
+                </div>
+                <h1 class="title" data-text="Tim Jaringan Komputer">Tugas Besar Jaringan Komputer!</h1>
+                <p class="subtitle">Tugas besar ini berkaitan dengan pembuatan web server berbasis TCP yang mampu menangani permintaan HTTP menggunakan socket programming. Server harus dapat menerima dan memproses request, mengirimkan file yang diminta, dan jika file tidak ditemukan, server akan mengirimkan response "404 Not Found". Selain itu, server harus mampu menangani beberapa permintaan secara bersamaan dengan memanfaatkan multithreading, di mana setiap permintaan dilayani dalam thread terpisah. Selain server, tugas ini juga mencakup pembuatan klien HTTP yang dapat mengirimkan request dan menampilkan response dari server.</p>
+                <div class="scroll-indicator">
+                    <div class="mouse">
+                        <div class="wheel"></div>
+                    </div>
+                    <div>
+                        <span class="scroll-arrow"></span>
+                        <span class="scroll-arrow"></span>
+                        <span class="scroll-arrow"></span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="team-section" id="team-section">
+                <div class="section-header">
+                    <h2 class="section-title">Anggota Kelompok</h2>
+                    <div class="section-divider">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+
+                <div class="cards-container">
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">Computer<span class="highlight">Networks</span></span>
+                </div>
+                <div class="footer-text">
+                    <p>&copy; Dibuat Oleh Kelompok 3.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal" id="detailModal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <button class="close-btn" aria-label="Close modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-body">
+                <div class="modal-left">
+                    <div class="modal-image-container">
+                        <img id="modalImage" src="/api/placeholder/400/400" alt="Team Member" loading="lazy">
+                        <div class="image-decoration">
+                            <div class="decoration-dot dot-1"></div>
+                            <div class="decoration-dot dot-2"></div>
+                            <div class="decoration-dot dot-3"></div>
+                            <div class="decoration-dot dot-4"></div>
+                        </div>
+                    </div>
+                    <div class="modal-quick-info">
+                        <div class="quick-info-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span id="modalEducation">Computer Science</span>
+                        </div>
+                        <div class="quick-info-item">
+                            <i class="fas fa-network-wired"></i>
+                            <span id="modalNetworkRole">Network Specialist</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-right">
+                    <div class="modal-header">
+                        <h2 id="modalName" class="modal-name"></h2>
+                        <p id="modalRole" class="modal-role">Computer Networks</p>
+                        <div class="modal-badge" id="modalNim"></div>
+                    </div>
+                    
+                    <div class="info-section">
+                        <h3>About</h3>
+                        <p id="modalAbout">A passionate student with interests in computer networks and distributed systems.</p>
+                    </div>
+                    
+                    <div class="info-section">
+                        <h3>Contact Information</h3>
+                        <div class="contact-list">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span id="modalEmail"></span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <span id="modalPhone"></span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span id="modalLocation">Bandung, Indonesia</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-section">
+                        <h3>Social Media</h3>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon" id="socialInstagram" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon" id="socialLinkedin" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-icon" id="socialGithub" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="social-icon" id="socialTwitter" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <div class="toast-container">
+        <div class="toast" id="toast">
+            <div class="toast-icon">
+                <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="toast-content">
+                <p id="toast-message">This is a notification message</p>
+            </div>
+            <button class="toast-close" id="toast-close" aria-label="Close notification">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="control.js"></script>
+</body>
+</html>
