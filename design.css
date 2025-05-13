@@ -203,7 +203,7 @@ section {
 }
 
 .dark-theme .background-container {
-    background: linear-gradient(135deg, var(--dark-bg-primary) 0%, var(--dark-bg-secondary) 50%, var(--dark-bg-tertiary) 100%);
+    background: #000000;
 }
 
 .light-theme .background-container {
@@ -2068,3 +2068,7 @@ section {
 .toast-container {
     z-index: 1000;
 }
+
+
+
+
