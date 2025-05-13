@@ -18,15 +18,24 @@
         <div class="clouds"></div>
         <div class="particle-container" id="particles"></div>
         <div class="network-grid" id="network-grid"></div>
+        <div class="data-stream" id="data-stream"></div>
+        <div class="circuit-board" id="circuit-board"></div>
+        <canvas id="network-canvas"></canvas>
     </div>
 
     <div class="loading-screen" id="loading-screen">
         <div class="loader">
+            <div class="loader-circuit">
+                <div class="circuit-node"></div>
+                <div class="circuit-node"></div>
+                <div class="circuit-node"></div>
+                <div class="circuit-node"></div>
+            </div>
             <div class="loader-circle"></div>
             <div class="loader-line-mask">
                 <div class="loader-line"></div>
             </div>
-            <span class="loading-text">Loading...</span>
+            <span class="loading-text">Establishing Connection...</span>
         </div>
     </div>
 
@@ -47,20 +56,38 @@
     <main class="main-content">
         <div class="container">
             <section class="hero-section">
-                <div class="network-animation">
-                    <div class="network-node center-node"></div>
-                    <div class="network-node node-1"></div>
-                    <div class="network-node node-2"></div>
-                    <div class="network-node node-3"></div>
-                    <div class="network-line line-1"></div>
-                    <div class="network-line line-2"></div>
-                    <div class="network-line line-3"></div>
-                    <div class="network-packet packet-1"></div>
-                    <div class="network-packet packet-2"></div>
-                    <div class="network-packet packet-3"></div>
+                <div class="network-animation-3d">
+                    <div class="network-globe">
+                        <div class="globe-ring ring-1"></div>
+                        <div class="globe-ring ring-2"></div>
+                        <div class="globe-ring ring-3"></div>
+                        <div class="server-node server-1"></div>
+                        <div class="server-node server-2"></div>
+                        <div class="server-node server-3"></div>
+                        <div class="data-packet packet-1"></div>
+                        <div class="data-packet packet-2"></div>
+                        <div class="data-packet packet-3"></div>
+                    </div>
                 </div>
-                <h1 class="title" data-text="Tim Jaringan Komputer">Tugas Besar Jaringan Komputer!</h1>
+                <h1 class="title glitch-effect" data-text="Tim Jaringan Komputer">Tugas Besar Jaringan Komputer!</h1>
                 <p class="subtitle">Tugas besar ini berkaitan dengan pembuatan web server berbasis TCP yang mampu menangani permintaan HTTP menggunakan socket programming. Server harus dapat menerima dan memproses request, mengirimkan file yang diminta, dan jika file tidak ditemukan, server akan mengirimkan response "404 Not Found". Selain itu, server harus mampu menangani beberapa permintaan secara bersamaan dengan memanfaatkan multithreading, di mana setiap permintaan dilayani dalam thread terpisah. Selain server, tugas ini juga mencakup pembuatan klien HTTP yang dapat mengirimkan request dan menampilkan response dari server.</p>
+                <div class="network-stats">
+                    <div class="stat">
+                        <i class="fas fa-server"></i>
+                        <span class="stat-value">TCP</span>
+                        <span class="stat-label">Protocol</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-network-wired"></i>
+                        <span class="stat-value">HTTP</span>
+                        <span class="stat-label">Layer</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-microchip"></i>
+                        <span class="stat-value">Multi</span>
+                        <span class="stat-label">Thread</span>
+                    </div>
+                </div>
                 <div class="scroll-indicator">
                     <div class="mouse">
                         <div class="wheel"></div>
@@ -85,6 +112,30 @@
 
                 <div class="cards-container">
                 </div>
+
+                <div class="conclusion-section">
+                    <div class="conclusion-card" id="conclusion-card">
+                        <div class="conclusion-header" id="conclusion-header">
+                            <h3>Kesimpulan</h3>
+                            <i class="fas fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div class="conclusion-content" id="conclusion-content">
+                            <p>Proyek web server berbasis TCP ini berhasil mengimplementasikan konsep fundamental jaringan komputer. Melalui penggunaan socket programming, kami berhasil membuat server yang dapat menangani permintaan HTTP secara efisien dengan dukungan multithreading.</p>
+                            <div class="conclusion-details">
+                                <h4>Pencapaian Utama:</h4>
+                                <ul>
+                                    <li>Implementasi TCP socket untuk komunikasi client-server</li>
+                                    <li>Pengolahan request HTTP dengan parsing yang tepat</li>
+                                    <li>Sistem response yang sesuai dengan standar HTTP</li>
+                                    <li>Penanganan error 404 untuk file yang tidak ditemukan</li>
+                                    <li>Multithreading untuk menangani koneksi simultan</li>
+                                </ul>
+                                <h4>Pembelajaran:</h4>
+                                <p>Proyek ini memberikan pemahaman mendalam tentang arsitektur jaringan, protokol TCP/IP, dan bagaimana web server bekerja di level fundamental. Implementasi multithreading juga memberikan wawasan tentang pentingnya concurrent programming dalam sistem jaringan modern.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
         </div>
     </main>
@@ -92,11 +143,9 @@
     <footer class="site-footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">
-                    <span class="logo-text">Computer<span class="highlight">Networks</span></span>
-                </div>
+                <div class="footer-network-pattern"></div>
                 <div class="footer-text">
-                    <p>&copy; Dibuat Oleh Kelompok 3.</p>
+                    <p>&copy; Dibuat Oleh Kelompok 3 • Computer Networks</p>
                 </div>
             </div>
         </div>

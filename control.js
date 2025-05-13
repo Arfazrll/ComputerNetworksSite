@@ -26,7 +26,7 @@ const teamMembers = [
         email: "azril4974@gmail.com",
         phone: "+62-81511463282",
         location: "Bandung, Indonesia",
-        image: 'WhatsApp Image 2025-04-23 at 14.26.39_643ee427.jpg',
+        image: 'WhatsApp Image 2025-01-23 at 14.26.39_643ee427.jpg',
         about: "Hii.",
         education: "Telkom University",
         networkRole: "Information Technology",
@@ -68,6 +68,8 @@ let themeLabel;
 let toast;
 let toastMessage;
 let toastCloseBtn;
+let conclusionCard;
+let conclusionHeader;
 
 document.addEventListener('DOMContentLoaded', () => {
     loadingScreen = document.getElementById('loading-screen');
@@ -80,6 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
     toast = document.getElementById('toast');
     toastMessage = document.getElementById('toast-message');
     toastCloseBtn = document.getElementById('toast-close');
+    conclusionCard = document.getElementById('conclusion-card');
+    conclusionHeader = document.getElementById('conclusion-header');
     
     setTimeout(() => {
         loadingScreen.style.opacity = '0';
@@ -94,6 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initEventListeners();
     initCardEffects();
     loadThemePreference();
+    initNetworkCanvas();
+    initDataStream();
     
     setTimeout(() => {
         showToast('Jika anda telah berhasil sampai kesini bearti server berhasil dijalankan!');
@@ -156,11 +162,18 @@ function initEventListeners() {
     themeToggle.addEventListener('click', toggleTheme);
     toastCloseBtn.addEventListener('click', hideToast);
     
+    // Conclusion card toggle
+    conclusionHeader.addEventListener('click', toggleConclusion);
+    
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal.classList.contains('active')) {
             closeModal();
         }
     });
+}
+
+function toggleConclusion() {
+    conclusionCard.classList.toggle('expanded');
 }
 
 function initCardEffects() {
@@ -181,14 +194,118 @@ function initCardEffects() {
             const rotateY = (centerX - x) / 20;
             
             card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+            
+            // Add glow effect at cursor position
+            const glowX = (x / rect.width) * 100;
+            const glowY = (y / rect.height) * 100;
+            card.style.background = `radial-gradient(circle at ${glowX}% ${glowY}%, rgba(0, 212, 255, 0.1), transparent)`;
         });
         
         card.addEventListener('mouseleave', () => {
             card.style.transform = '';
+            card.style.background = '';
         });
         
         card.style.animation = `cardFloat 6s ease-in-out ${index * 0.5}s infinite`;
     });
+}
+
+// New network canvas visualization
+function initNetworkCanvas() {
+    const canvas = document.getElementById('network-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    const nodes = [];
+    const connections = [];
+    
+    // Create nodes
+    for (let i = 0; i < 20; i++) {
+        nodes.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            radius: Math.random() * 3 + 1,
+            vx: (Math.random() - 0.5) * 0.5,
+            vy: (Math.random() - 0.5) * 0.5
+        });
+    }
+    
+    // Create connections
+    for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+            if (Math.random() < 0.1) {
+                connections.push([i, j]);
+            }
+        }
+    }
+    
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Update nodes
+        nodes.forEach(node => {
+            node.x += node.vx;
+            node.y += node.vy;
+            
+            if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+            if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+        });
+        
+        // Draw connections
+        ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--accent-primary');
+        ctx.lineWidth = 0.5;
+        ctx.globalAlpha = 0.3;
+        
+        connections.forEach(([i, j]) => {
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.stroke();
+        });
+        
+        // Draw nodes
+        ctx.globalAlpha = 1;
+        nodes.forEach(node => {
+            ctx.beginPath();
+            ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+            ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--accent-primary');
+            ctx.fill();
+        });
+        
+        requestAnimationFrame(animate);
+    }
+    
+    animate();
+    
+    // Resize canvas on window resize
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+}
+
+// Enhanced data stream effect
+function initDataStream() {
+    const dataStream = document.getElementById('data-stream');
+    const binaryStrings = ['01101000', '11010101', '00110010', '10101010', '11110000'];
+    
+    setInterval(() => {
+        const dataElement = document.createElement('div');
+        dataElement.className = 'data-bit';
+        dataElement.textContent = binaryStrings[Math.floor(Math.random() * binaryStrings.length)];
+        dataElement.style.left = Math.random() * 100 + '%';
+        dataElement.style.animationDuration = Math.random() * 5 + 5 + 's';
+        dataElement.style.fontSize = Math.random() * 10 + 10 + 'px';
+        dataElement.style.opacity = Math.random() * 0.5 + 0.1;
+        
+        dataStream.appendChild(dataElement);
+        
+        setTimeout(() => {
+            dataElement.remove();
+        }, 10000);
+    }, 500);
 }
 
 function openModal(e, memberId) {
@@ -330,9 +447,15 @@ function createNetworkGrid() {
         dot.style.left = `${posX}%`;
         dot.style.top = `${posY}%`;
         
+        // Add pulsing animation to some dots
+        if (Math.random() > 0.7) {
+            dot.style.animation = `pulse-dot 3s ease-in-out ${Math.random() * 3}s infinite`;
+        }
+        
         container.appendChild(dot);
     }
     
+    // Create more dynamic network lines
     for (let i = 0; i < gridSize; i++) {
         if (Math.random() > 0.7) {
             const hLine = document.createElement('div');
@@ -347,6 +470,7 @@ function createNetworkGrid() {
                 left: ${posX}%;
                 width: ${width}%;
                 height: 1px;
+                animation: line-flow ${Math.random() * 5 + 5}s linear infinite;
             `;
             
             container.appendChild(hLine);
@@ -365,6 +489,7 @@ function createNetworkGrid() {
                 top: ${posY}%;
                 height: ${height}%;
                 width: 1px;
+                animation: line-flow-vertical ${Math.random() * 5 + 5}s linear infinite;
             `;
             
             container.appendChild(vLine);
@@ -373,7 +498,7 @@ function createNetworkGrid() {
 }
 
 function animateOnScroll() {
-    const elements = document.querySelectorAll('.card, .section-header');
+    const elements = document.querySelectorAll('.card, .section-header, .conclusion-card');
     
     elements.forEach(element => {
         const elementTop = element.getBoundingClientRect().top;
