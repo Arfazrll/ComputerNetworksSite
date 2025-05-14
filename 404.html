@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Halaman Tidak Ditemukan</title>
+    <meta name="description" content="Halaman tidak ditemukan - Error 404">
+    <link rel="stylesheet" href="design.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+
+        .error-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 var(--spacing-lg);
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: 800;
+            margin-bottom: 0;
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 50%, var(--accent-tertiary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            animation: gradient-shift 3s ease infinite;
+            position: relative;
+        }
+        
+        .error-code::after {
+            content: "404";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: none;
+            -webkit-text-fill-color: transparent;
+            filter: blur(20px);
+            opacity: 0.7;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .error-message {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-lg);
+            color: var(--text-primary);
+        }
+        
+        .error-description {
+            max-width: 600px;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-2xl);
+            line-height: 1.8;
+        }
+        
+        .network-error-animation {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin-bottom: var(--spacing-2xl);
+        }
+        
+        .broken-node {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-tertiary), var(--accent-secondary));
+            box-shadow: 0 0 30px var(--accent-glow);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse-error 2s ease-in-out infinite;
+        }
+        
+        .error-line {
+            position: absolute;
+            height: 3px;
+            width: 100px;
+            background: linear-gradient(90deg, var(--accent-tertiary), transparent);
+            top: 50%;
+            left: 50%;
+            transform-origin: 0 0;
+        }
+        
+        .error-line:nth-child(1) {
+            transform: rotate(45deg);
+        }
+        
+        .error-line:nth-child(2) {
+            transform: rotate(135deg);
+        }
+        
+        .error-line:nth-child(3) {
+            transform: rotate(225deg);
+        }
+        
+        .error-line:nth-child(4) {
+            transform: rotate(315deg);
+        }
+        
+        .back-button {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            color: white;
+            border: none;
+            padding: var(--spacing-sm) var(--spacing-xl);
+            border-radius: var(--border-radius-full);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .dark-theme .back-button {
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+        }
+        
+        .dark-theme .back-button:hover {
+            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.5);
+        }
+        
+        @keyframes pulse-error {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.7;
+            }
+        }
+        
+        .network-packet {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-tertiary);
+            box-shadow: 0 0 10px var(--accent-tertiary);
+            animation: move-packet-error 2s linear infinite;
+        }
+        
+        @keyframes move-packet-error {
+            0% {
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                opacity: 1;
+            }
+            50% {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                opacity: 1;
+            }
+            51% {
+                opacity: 0;
+            }
+            100% {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body class="dark-theme">
+    <div class="background-container">
+        <div class="stars"></div>
+        <div class="twinkling"></div>
+        <div class="clouds"></div>
+        <div class="particle-container" id="particles"></div>
+        <div class="network-grid" id="network-grid"></div>
+        <div class="circuit-board" id="circuit-board"></div>
+        <canvas id="network-canvas"></canvas>
+    </div>
+
+    <div class="theme-toggle-container">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+            <span class="theme-toggle-track">
+                <span class="theme-toggle-icon theme-toggle-icon-light">
+                    <i class="fas fa-sun"></i>
+                </span>
+                <span class="theme-toggle-icon theme-toggle-icon-dark">
+                    <i class="fas fa-moon"></i>
+                </span>
+            </span>
+        </button>
+        <span class="theme-label">Dark Mode</span>
+    </div>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="error-section">
+                <div class="network-error-animation">
+                    <div class="broken-node"></div>
+                    <div class="error-line"></div>
+                    <div class="error-line"></div>
+                    <div class="error-line"></div>
+                    <div class="error-line"></div>
+                    <div class="network-packet"></div>
+                </div>
+                
+                <h1 class="error-code">404</h1>
+                <h2 class="error-message">Halaman Tidak Ditemukan</h2>
+                <p class="error-description">Maaf, file atau halaman yang Anda cari tidak dapat ditemukan di server. Koneksi atau alamat mungkin salah, atau file telah dipindahkan atau dihapus.</p>
+                
+                <a href="/" class="back-button">
+                    <i class="fas fa-home"></i>
+                    <span>Kembali ke Beranda</span>
+                </a>
+            </section>
+        </div>
+    </main>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            createNetworkGrid();
+            
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeLabel = document.querySelector('.theme-label');
+            
+            themeToggle.addEventListener('click', toggleTheme);
+            
+            loadThemePreference();
+            
+            initNetworkCanvas();
+        });
+        
+        function toggleTheme() {
+            const body = document.body;
+            
+            if (body.classList.contains('dark-theme')) {
+                body.classList.remove('dark-theme');
+                body.classList.add('light-theme');
+                themeLabel.textContent = 'Light Mode';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.remove('light-theme');
+                body.classList.add('dark-theme');
+                themeLabel.textContent = 'Dark Mode';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        
+        function loadThemePreference() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeLabel = document.querySelector('.theme-label');
+            
+            if (savedTheme === 'light') {
+                document.body.classList.remove('dark-theme');
+                document.body.classList.add('light-theme');
+                themeLabel.textContent = 'Light Mode';
+            } else {
+                document.body.classList.add('dark-theme');
+                document.body.classList.remove('light-theme');
+                themeLabel.textContent = 'Dark Mode';
+            }
+        }
+        
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particlesCount = 30;
+            
+            for (let i = 0; i < particlesCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const size = Math.random() * 5 + 1;
+                const opacity = Math.random() * 0.5 + 0.1;
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+
+                particle.style.cssText = `
+                    top: ${posY}%;
+                    left: ${posX}%;
+                    width: ${size}px;
+                    height: ${size}px;
+                    opacity: ${opacity};
+                    animation: particleFloat ${duration}s linear ${delay}s infinite;
+                `;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        function createNetworkGrid() {
+            const container = document.getElementById('network-grid');
+            const gridSize = 15;
+            const dotCount = 30;
+            
+            for (let i = 0; i < dotCount; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'grid-dot';
+                
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                
+                dot.style.left = `${posX}%`;
+                dot.style.top = `${posY}%`;
+
+                if (Math.random() > 0.7) {
+                    dot.style.animation = `pulse-dot 3s ease-in-out ${Math.random() * 3}s infinite`;
+                }
+                
+                container.appendChild(dot);
+            }
+            
+            for (let i = 0; i < gridSize; i++) {
+                if (Math.random() > 0.7) {
+                    const hLine = document.createElement('div');
+                    hLine.className = 'grid-line';
+                    
+                    const posY = (i / gridSize) * 100;
+                    const width = Math.random() * 20 + 10;
+                    const posX = Math.random() * (100 - width);
+                    
+                    hLine.style.cssText = `
+                        top: ${posY}%;
+                        left: ${posX}%;
+                        width: ${width}%;
+                        height: 1px;
+                        animation: line-flow ${Math.random() * 5 + 5}s linear infinite;
+                    `;
+                    
+                    container.appendChild(hLine);
+                }
+            }
+        }
+        
+        function initNetworkCanvas() {
+            const canvas = document.getElementById('network-canvas');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            const nodes = [];
+            const connections = [];
+            
+            for (let i = 0; i < 15; i++) {
+                nodes.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 3 + 1,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5
+                });
+            }
+            
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    if (Math.random() < 0.1) {
+                        connections.push([i, j]);
+                    }
+                }
+            }
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                nodes.forEach(node => {
+                    node.x += node.vx;
+                    node.y += node.vy;
+                    
+                    if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+                    if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+                });
+                
+                ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--accent-primary');
+                ctx.lineWidth = 0.5;
+                ctx.globalAlpha = 0.3;
+                
+                connections.forEach(([i, j]) => {
+                    ctx.beginPath();
+                    ctx.moveTo(nodes[i].x, nodes[i].y);
+                    ctx.lineTo(nodes[j].x, nodes[j].y);
+                    ctx.stroke();
+                });
+
+                ctx.globalAlpha = 1;
+                nodes.forEach(node => {
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--accent-primary');
+                    ctx.fill();
+                });
+                
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+            
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        }
+    </script>
+</body>
+</html>

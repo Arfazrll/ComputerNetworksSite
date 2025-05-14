@@ -22,7 +22,7 @@ const teamMembers = [
         name: "Syahril Arfian Almazril",
         nim: "103032300013",
         class: "IT-47-04",
-        role: "Backend & Server Management",
+        role: " --- ",
         email: "azril4974@gmail.com",
         phone: "+62-81511463282",
         location: "Bandung, Indonesia",
