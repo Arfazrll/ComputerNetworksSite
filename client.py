@@ -33,27 +33,42 @@ def http_client(server_host, server_port, filename):
             headers = response[:header_end].decode('utf-8')
             body = response[header_end + 4:]
             
+            print("===== RESPONSE HEADERS =====")
             print(headers)
-            print("\n")
             
-            try:
-                print(body.decode('utf-8'))
-            except UnicodeDecodeError:
-                print(f"Body: {len(body)} bytes (binary content)")
-                
+            status_line = headers.split('\r\n')[0]
+            print(f"\n[*] Status: {status_line}")
+            
+            content_type = "text/plain"
+            for line in headers.split('\r\n'):
+                if line.lower().startswith("content-type:"):
+                    content_type = line.split(':', 1)[1].strip()
+                    break
+            
+            print("\n===== RESPONSE BODY =====")
+            if content_type.startswith(("text/", "application/json", "application/javascript")):
+                try:
+                    print(body.decode('utf-8'))
+                except UnicodeDecodeError:
+                    print(f"[!] Binary content ({len(body)} bytes)")
+            else:
+                print(f"[*] {content_type} data ({len(body)} bytes)")
+        else:
+            print("[!] Invalid response format")
+    
     except socket.error as e:
-        print(f"Socket error: {e}")
+        print(f"[!] Error: {e}")
 
 def main():
     if len(sys.argv) != 4:
-        print("Usage: python client.py server_host server_port filename")
+        print("Penggunaan: python client.py server_host server_port filename")
         sys.exit(1)
     
     server_host = sys.argv[1]
     try:
         server_port = int(sys.argv[2])
     except ValueError:
-        print(f"Port tidak valid: {sys.argv[2]}")
+        print(f"[!] Port tidak valid: {sys.argv[2]}")
         sys.exit(1)
     
     filename = sys.argv[3]
