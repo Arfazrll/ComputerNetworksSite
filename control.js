@@ -1,7 +1,7 @@
 const teamMembers = [
     {
-        name: "Arief",
-        nim: "1030",
+        name: "Muhammad Arief Ridwan Syah",
+        nim: "103032300064",
         class: "IT-47-04",
         role: " --- ",
         email: "",
@@ -38,22 +38,22 @@ const teamMembers = [
         }
     },
     {
-        name: "Nopal",
-        nim: "1030",
+        name: "Nauval Yusriya Athalla",
+        nim: "103032330022",
         class: "IT-47-04",
         role: " --- ",
-        email: "---",
+        email: "103032330022",
         phone: "---",
         location: "Bandung, Indonesia",
-        image: '',
+        image: 'WhatsApp Image 2025-05-16 at 11.23.30_a6c0aed9.jpg',
         about: "Hiii",
         education: "Telkom University",
         networkRole: "Information Technology",
         socials: {
-            instagram: "https://instagram.com/mnfirdaus",
-            linkedin: "https://linkedin.com/in/mnfirdaus",
-            github: "https://github.com/mnfirdaus",
-            twitter: "https://twitter.com/mnfirdaus"
+            instagram: "",
+            linkedin: "",
+            github: "",
+            twitter: ""
         }
     }
 ];

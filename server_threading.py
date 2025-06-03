@@ -1,8 +1,8 @@
-import socket  
+import socket
+import threading
 import os
 import sys
 from datetime import datetime
-
 
 SERVER_HOST = '0.0.0.0'
 SERVER_PORT = 1009
@@ -27,22 +27,23 @@ class WebServer:
         self.server_socket.bind((self.host, self.port))
         self.running = False
 
-     def start(self):
-        self.server_socket.listen(1)
+    def start(self):
+        self.server_socket.listen(5)
         self.running = True
         print(f"[*] Server berjalan di http://localhost:{self.port}")
-    
-    try:
-        while self.running:
-            client_socket, address = self.server_socket.accept()
-            print(f"[+] Koneksi dari {address}")
-            self.handle_client(client_socket, address)
-     except KeyboardInterrupt:
-        print("\n[!] Server dihentikan oleh pengguna.")
-        self.stop()
-
         
-    
+        try:
+            while self.running:
+                client_socket, client_address = self.server_socket.accept()
+                client_thread = threading.Thread(
+                    target=self.handle_client,
+                    args=(client_socket, client_address)
+                )
+                client_thread.daemon = True
+                client_thread.start()
+        except KeyboardInterrupt:
+            self.stop()
+
     def stop(self):
         self.running = False
         self.server_socket.close()
